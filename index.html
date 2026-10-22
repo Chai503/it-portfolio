@@ -19,15 +19,66 @@
         .hero-section {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
-            padding: 90px 0 70px;
+            padding: 80px 0 65px;
         }
-        .profile-img {
-            width: 190px;
-            height: 190px;
-            object-fit: cover;
-            border: 5px solid rgba(255, 255, 255, 0.9);
+
+        /* 3D Flip Profile Container */
+        .profile-flip-container {
+            perspective: 1000px;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 15px;
+            cursor: pointer;
+        }
+        .profile-flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+        .profile-flip-inner.flipped {
+            transform: rotateY(180deg);
+        }
+        .profile-front, .profile-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 50%;
+            overflow: hidden;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
         }
+        .profile-front {
+            border: 5px solid rgba(255, 255, 255, 0.95);
+        }
+        .profile-back {
+            transform: rotateY(180deg);
+            border: 5px solid #ff3366;
+            box-shadow: 0 0 30px rgba(255, 51, 102, 0.7);
+        }
+        .profile-front img, .profile-back img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .flip-hint {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .flip-hint:hover {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
         .card {
             border: none;
             border-radius: 14px;
@@ -46,7 +97,7 @@
         }
         .skill-icon {
             font-size: 2.2rem;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         .qr-card {
             background: #ffffff;
@@ -88,13 +139,30 @@
     <!-- Hero Section -->
     <header id="home" class="hero-section text-center">
         <div class="container">
-            <img src="profile.jpg" alt="Chaisak Phukerd" class="rounded-circle profile-img mb-4">
+            <!-- Interactive 3D Flip Profile -->
+            <div class="profile-flip-container" onclick="toggleAvatar()" title="คลิกเพื่อสลับรูป">
+                <div class="profile-flip-inner" id="profileFlipInner">
+                    <div class="profile-front">
+                        <img src="profile.jpg" alt="Chaisak Phukerd Real Photo">
+                    </div>
+                    <div class="profile-back">
+                        <img src="profile-laser.jpg" alt="Laser Eyes Secret Mode">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <span class="flip-hint" onclick="toggleAvatar()">
+                    <i class="bi bi-arrow-repeat me-1"></i> คลิกที่รูปเพื่อสลับโหมด
+                </span>
+            </div>
+
             <h1 class="display-5 fw-bold mb-2">นายชัยศักดิ์ ภู่เกิด (Chaisak Phukerd)</h1>
             <p class="fs-5 mb-3 text-light opacity-90">
                 รหัสนิสิต: <strong>67310072</strong> | สาขาเทคโนโลยีสารสนเทศ
             </p>
             <p class="lead mb-4 mx-auto" style="max-width: 650px;">
-                นิสิตคณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา มุ่งมั่นเรียนรู้และพัฒนาทักษะด้าน IT, Web Development และ Cybersecurity
+                นิสิตคณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา มุ่งมั่นเรียนรู้และพัฒนาทักษะด้าน IT, Web Development และ Programming
             </p>
             <div class="d-flex justify-content-center gap-3">
                 <a href="#projects" class="btn btn-primary btn-lg px-4 shadow fw-semibold"><i class="bi bi-folder-check me-2"></i>ดูผลงาน</a>
@@ -165,41 +233,82 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- Skills Section (4 ทักษะ แต่ละทักษะระหว่าง 60% - 80%) -->
     <section id="skills" class="py-5">
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="fw-bold"><i class="bi bi-tools text-primary"></i> ความสามารถด้าน IT (Skills)</h2>
-                <p class="text-muted">ทักษะและความถนัดทางด้านเทคโนโลยี</p>
+                <p class="text-muted">ทักษะและความถนัดทางด้านเทคโนโลยีสารสนเทศและการเขียนโปรแกรม</p>
             </div>
             <div class="row g-4">
-                <div class="col-md-4">
+                <!-- Skill 1: C++ & Python Programming -->
+                <div class="col-md-6 col-lg-3">
                     <div class="card h-100 p-4 text-center shadow-sm">
-                        <div class="skill-icon text-primary"><i class="bi bi-filetype-html"></i> <i class="bi bi-filetype-css"></i></div>
-                        <h5 class="fw-bold mb-3">Frontend Development</h5>
-                        <p class="text-muted small">พัฒนาหน้าเว็บไซต์ด้วย HTML5, CSS3, JavaScript และ Bootstrap Framework รองรับ Responsive Design</p>
-                        <div class="progress mt-auto" style="height: 10px;">
-                            <div class="progress-bar bg-primary" style="width: 85%"></div>
+                        <div class="skill-icon text-warning"><i class="bi bi-code-square"></i></div>
+                        <h5 class="fw-bold mb-2">C++ & Python</h5>
+                        <p class="text-muted small">การเขียนโปรแกรมเชิงโครงสร้างและเชิงวัตถุ (OOP) ด้วย C++ และ Python สำหรับการแก้ปัญหาและประมวลผลข้อมูล</p>
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between small text-muted mb-1">
+                                <span>ความชำนาญ</span>
+                                <span class="fw-bold text-dark">75%</span>
+                            </div>
+                            <div class="progress" style="height: 10px;">
+                                <div class="progress-bar bg-warning text-dark" style="width: 75%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+
+                <!-- Skill 2: Web Development -->
+                <div class="col-md-6 col-lg-3">
                     <div class="card h-100 p-4 text-center shadow-sm">
-                        <div class="skill-icon text-success"><i class="bi bi-git"></i> <i class="bi bi-github"></i></div>
-                        <h5 class="fw-bold mb-3">Version Control & Git</h5>
-                        <p class="text-muted small">การใช้งาน Git, GitHub, จัดการ Repository, Branch, Staging, Commit, Push และโฮสต์ผ่าน GitHub Pages</p>
-                        <div class="progress mt-auto" style="height: 10px;">
-                            <div class="progress-bar bg-success" style="width: 90%"></div>
+                        <div class="skill-icon text-primary"><i class="bi bi-filetype-html"></i></div>
+                        <h5 class="fw-bold mb-2">Web Development</h5>
+                        <p class="text-muted small">ออกแบบและสร้างเว็บไซต์ด้วย HTML5, CSS3, JavaScript และ Bootstrap 5 รองรับ Responsive Design ทุกขนาดหน้าจอ</p>
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between small text-muted mb-1">
+                                <span>ความชำนาญ</span>
+                                <span class="fw-bold text-dark">78%</span>
+                            </div>
+                            <div class="progress" style="height: 10px;">
+                                <div class="progress-bar bg-primary" style="width: 78%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+
+                <!-- Skill 3: Git & Version Control -->
+                <div class="col-md-6 col-lg-3">
                     <div class="card h-100 p-4 text-center shadow-sm">
-                        <div class="skill-icon text-danger"><i class="bi bi-shield-check"></i> <i class="bi bi-server"></i></div>
-                        <h5 class="fw-bold mb-3">Security & Database</h5>
-                        <p class="text-muted small">ความรู้พื้นฐานความมั่นคงปลอดภัยสารสนเทศ การจัดการฐานข้อมูล SQL และระบบปฏิบัติการคอมพิวเตอร์</p>
-                        <div class="progress mt-auto" style="height: 10px;">
-                            <div class="progress-bar bg-danger" style="width: 80%"></div>
+                        <div class="skill-icon text-success"><i class="bi bi-git"></i></div>
+                        <h5 class="fw-bold mb-2">Git & GitHub</h5>
+                        <p class="text-muted small">การจัดการเวอร์ชันของโค้ดด้วย Git, GitHub Repository, Branching, Staging, Commit, Push และเผยแพร่ผ่าน GitHub Pages</p>
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between small text-muted mb-1">
+                                <span>ความชำนาญ</span>
+                                <span class="fw-bold text-dark">80%</span>
+                            </div>
+                            <div class="progress" style="height: 10px;">
+                                <div class="progress-bar bg-success" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill 4: Database & Security -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 p-4 text-center shadow-sm">
+                        <div class="skill-icon text-danger"><i class="bi bi-shield-check"></i></div>
+                        <h5 class="fw-bold mb-2">Database & Security</h5>
+                        <p class="text-muted small">พื้นฐานระบบฐานข้อมูล SQL, การออกแบบฐานข้อมูล และหลักการความมั่นคงปลอดภัยสารสนเทศเบื้องต้น</p>
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between small text-muted mb-1">
+                                <span>ความชำนาญ</span>
+                                <span class="fw-bold text-dark">70%</span>
+                            </div>
+                            <div class="progress" style="height: 10px;">
+                                <div class="progress-bar bg-danger" style="width: 70%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -212,7 +321,7 @@
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="fw-bold"><i class="bi bi-folder-fill text-primary"></i> ผลงาน (Projects)</h2>
-                <p class="text-muted">โครงการและผลงานที่ภาคภูมิใจ</p>
+                <p class="text-muted">โครงการและผลงานที่พัฒนาในรายวิชา</p>
             </div>
             <div class="row g-4">
                 <div class="col-md-4">
@@ -237,7 +346,7 @@
                         <div class="card-body">
                             <h5 class="card-title fw-bold">Security Lab & Tools</h5>
                             <p class="card-text text-muted small">การทดลองและปฏิบัติการด้านความปลอดภัย การเข้ารหัสข้อมูล (Encryption) และการจัดการ Version Control</p>
-                            <span class="badge bg-success-subtle text-success border">Information Security</span>
+                            <span class="badge bg-success-subtle text-success border">Security</span>
                             <span class="badge bg-success-subtle text-success border">Git</span>
                         </div>
                     </div>
@@ -248,10 +357,10 @@
                             <i class="bi bi-database-check fs-1"></i>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title fw-bold">Database Management App</h5>
-                            <p class="card-text text-muted small">ระบบจัดการข้อมูลและออกแบบฐานข้อมูลเชิงสัมพันธ์ รองรับการสืบค้นและรายงานผลข้อมูลสารสนเทศ</p>
+                            <h5 class="card-title fw-bold">Python & Database App</h5>
+                            <p class="card-text text-muted small">โปรแกรมจัดเก็บและจัดการข้อมูลสารสนเทศ พัฒนาด้วย Python เชื่อมต่อระบบฐานข้อมูลเชิงสัมพันธ์</p>
+                            <span class="badge bg-info-subtle text-info border">Python</span>
                             <span class="badge bg-info-subtle text-info border">SQL</span>
-                            <span class="badge bg-info-subtle text-info border">Relational DB</span>
                         </div>
                     </div>
                 </div>
@@ -313,5 +422,13 @@
 
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script สำหรับคลิกหมุนสลับรูปโปรไฟล์ 3D -->
+    <script>
+        function toggleAvatar() {
+            const inner = document.getElementById('profileFlipInner');
+            inner.classList.toggle('flipped');
+        }
+    </script>
 </body>
 </html>
