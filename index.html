@@ -18,7 +18,29 @@
         .hero-section {
             background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
             color: white;
-            padding: 80px 0;
+            padding: 80px 0 60px;
+        }
+        .profile-img {
+            width: 170px;
+            height: 170px;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .card {
+            border: none;
+            border-radius: 12px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
+        .course-badge {
+            font-size: 0.9rem;
+            padding: 8px 14px;
+            margin: 4px;
+            border-radius: 20px;
         }
     </style>
 </head>
@@ -37,6 +59,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="#home">หน้าแรก</a></li>
                     <li class="nav-item"><a class="nav-link" href="#about">เกี่ยวกับฉัน</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#courses">รายวิชาที่เรียน</a></li>
                     <li class="nav-item"><a class="nav-link" href="#skills">ทักษะ</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projects">ผลงาน</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">ติดต่อ</a></li>
@@ -48,11 +71,71 @@
     <!-- Hero Section -->
     <header id="home" class="hero-section text-center">
         <div class="container">
-            <h1 class="display-4 fw-bold mb-3">ยินดีต้อนรับสู่ Portfolio ของฉัน</h1>
-            <p class="lead mb-4">ยินดีต้อนรับสู่หน้าแนะนำตัวและรวบรวมผลงานด้านเทคโนโลยีสารสนเทศ</p>
+            <img src="https://github.com/Chai503.png" alt="Profile Picture" class="rounded-circle profile-img mb-4">
+            <h1 class="display-5 fw-bold mb-2">Chaisak Phukerd</h1>
+            <p class="fs-5 mb-3 text-light opacity-75">รหัสนิสิต: 67310072 | สาขาเทคโนโลยีสารสนเทศ</p>
+            <p class="lead mb-4">นิสิตคณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา ที่มีความสนใจด้านการพัฒนาซอฟต์แวร์และเทคโนโลยีสารสนเทศ</p>
             <a href="#about" class="btn btn-light btn-lg px-4 shadow-sm fw-semibold">ดูข้อมูลส่วนตัว</a>
         </div>
     </header>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold"><i class="bi bi-person-circle text-primary"></i> ข้อมูลส่วนตัว (About Me)</h2>
+                <p class="text-muted">ประวัติและข้อมูลการศึกษา</p>
+            </div>
+            <div class="row g-4 align-items-center justify-content-center">
+                <div class="col-md-8 col-lg-7">
+                    <div class="card shadow-sm p-4">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between py-3">
+                                <span class="fw-bold"><i class="bi bi-person me-2 text-primary"></i>ชื่อ-นามสกุล:</span>
+                                <span>นายชัยศักดิ์ ภู่เกิด (Chaisak Phukerd)</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between py-3">
+                                <span class="fw-bold"><i class="bi bi-card-heading me-2 text-primary"></i>รหัสนิสิต:</span>
+                                <span class="badge bg-primary fs-6">67310072</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between py-3">
+                                <span class="fw-bold"><i class="bi bi-mortarboard me-2 text-primary"></i>สาขาวิชา:</span>
+                                <span>เทคโนโลยีสารสนเทศ (Information Technology)</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between py-3">
+                                <span class="fw-bold"><i class="bi bi-building me-2 text-primary"></i>คณะ / มหาวิทยาลัย:</span>
+                                <span>คณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between py-3">
+                                <span class="fw-bold"><i class="bi bi-envelope me-2 text-primary"></i>อีเมล:</span>
+                                <span>67310072@go.buu.ac.th</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold"><i class="bi bi-book-half text-primary"></i> รายวิชาที่เรียน (Courses)</h2>
+                <p class="text-muted">วิชาสำคัญที่ได้ศึกษาในหลักสูตร</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-10 text-center">
+                    <span class="badge bg-primary course-badge"><i class="bi bi-shield-lock me-1"></i> Introduction to Information Security</span>
+                    <span class="badge bg-secondary course-badge"><i class="bi bi-code me-1"></i> Web Development & Technology</span>
+                    <span class="badge bg-success course-badge"><i class="bi bi-database me-1"></i> Database Systems</span>
+                    <span class="badge bg-danger course-badge"><i class="bi bi-cpu me-1"></i> Computer Programming</span>
+                    <span class="badge bg-warning text-dark course-badge"><i class="bi bi-diagram-3 me-1"></i> Data Structures & Algorithms</span>
+                    <span class="badge bg-info text-dark course-badge"><i class="bi bi-hdd-network me-1"></i> Computer Networks</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
