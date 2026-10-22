@@ -14,33 +14,50 @@
         body {
             font-family: 'Prompt', sans-serif;
             background-color: #f8f9fa;
+            color: #333;
         }
         .hero-section {
-            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
-            padding: 80px 0 60px;
+            padding: 90px 0 70px;
         }
         .profile-img {
-            width: 170px;
-            height: 170px;
+            width: 190px;
+            height: 190px;
             object-fit: cover;
-            border: 4px solid white;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            border: 5px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
         }
         .card {
             border: none;
-            border-radius: 12px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border-radius: 14px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
         .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1) !important;
         }
         .course-badge {
-            font-size: 0.9rem;
-            padding: 8px 14px;
-            margin: 4px;
-            border-radius: 20px;
+            font-size: 0.95rem;
+            padding: 10px 18px;
+            margin: 5px;
+            border-radius: 25px;
+            display: inline-block;
+        }
+        .skill-icon {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        .qr-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            display: inline-block;
+        }
+        footer {
+            background-color: #111827;
+            color: #9ca3af;
         }
     </style>
 </head>
@@ -57,12 +74,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="#home">หน้าแรก</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">เกี่ยวกับฉัน</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#courses">รายวิชาที่เรียน</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#skills">ทักษะ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#home">หน้าแรก</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">ข้อมูลส่วนตัว</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#courses">วิชาที่เรียน</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">ทักษะ IT</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projects">ผลงาน</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">ติดต่อ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">ติดต่อ & QR Code</a></li>
                 </ul>
             </div>
         </div>
@@ -71,11 +88,19 @@
     <!-- Hero Section -->
     <header id="home" class="hero-section text-center">
         <div class="container">
-            <img src="https://github.com/Chai503.png" alt="Profile Picture" class="rounded-circle profile-img mb-4">
-            <h1 class="display-5 fw-bold mb-2">Chaisak Phukerd</h1>
-            <p class="fs-5 mb-3 text-light opacity-75">รหัสนิสิต: 67310072 | สาขาเทคโนโลยีสารสนเทศ</p>
-            <p class="lead mb-4">นิสิตคณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา ที่มีความสนใจด้านการพัฒนาซอฟต์แวร์และเทคโนโลยีสารสนเทศ</p>
-            <a href="#about" class="btn btn-light btn-lg px-4 shadow-sm fw-semibold">ดูข้อมูลส่วนตัว</a>
+            <img src="profile.jpg" alt="Chaisak Phukerd" class="rounded-circle profile-img mb-4">
+            <h1 class="display-5 fw-bold mb-2">ชัยศักดิ์ ภู่เกิด (Chaisak Phukerd)</h1>
+            <p class="fs-5 mb-3 text-light opacity-90">
+                <span class="badge bg-warning text-dark px-3 py-2 me-2"><i class="bi bi-award-fill"></i> AURA +9999</span>
+                รหัสนิสิต: <strong>67310072</strong> | สาขาเทคโนโลยีสารสนเทศ
+            </p>
+            <p class="lead mb-4 mx-auto" style="max-width: 650px;">
+                นิสิตคณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา มุ่งมั่นเรียนรู้และพัฒนาทักษะด้าน IT, Web Development และ Cybersecurity
+            </p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="#projects" class="btn btn-primary btn-lg px-4 shadow fw-semibold"><i class="bi bi-folder-check me-2"></i>ดูผลงาน</a>
+                <a href="#contact" class="btn btn-outline-light btn-lg px-4 fw-semibold"><i class="bi bi-qr-code me-2"></i>GitHub QR Code</a>
+            </div>
         </div>
     </header>
 
@@ -83,32 +108,36 @@
     <section id="about" class="py-5">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="fw-bold"><i class="bi bi-person-circle text-primary"></i> ข้อมูลส่วนตัว (About Me)</h2>
+                <h2 class="fw-bold"><i class="bi bi-person-bounding-box text-primary"></i> ข้อมูลส่วนตัว (About Me)</h2>
                 <p class="text-muted">ประวัติและข้อมูลการศึกษา</p>
             </div>
-            <div class="row g-4 align-items-center justify-content-center">
-                <div class="col-md-8 col-lg-7">
+            <div class="row justify-content-center">
+                <div class="col-md-9 col-lg-8">
                     <div class="card shadow-sm p-4">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item d-flex justify-content-between py-3">
+                            <li class="list-group-item d-flex justify-content-between align-items-center py-3">
                                 <span class="fw-bold"><i class="bi bi-person me-2 text-primary"></i>ชื่อ-นามสกุล:</span>
                                 <span>นายชัยศักดิ์ ภู่เกิด (Chaisak Phukerd)</span>
                             </li>
-                            <li class="list-group-item d-flex justify-content-between py-3">
+                            <li class="list-group-item d-flex justify-content-between align-items-center py-3">
                                 <span class="fw-bold"><i class="bi bi-card-heading me-2 text-primary"></i>รหัสนิสิต:</span>
-                                <span class="badge bg-primary fs-6">67310072</span>
+                                <span class="badge bg-primary fs-6 px-3 py-2">67310072</span>
                             </li>
-                            <li class="list-group-item d-flex justify-content-between py-3">
+                            <li class="list-group-item d-flex justify-content-between align-items-center py-3">
                                 <span class="fw-bold"><i class="bi bi-mortarboard me-2 text-primary"></i>สาขาวิชา:</span>
                                 <span>เทคโนโลยีสารสนเทศ (Information Technology)</span>
                             </li>
-                            <li class="list-group-item d-flex justify-content-between py-3">
+                            <li class="list-group-item d-flex justify-content-between align-items-center py-3">
                                 <span class="fw-bold"><i class="bi bi-building me-2 text-primary"></i>คณะ / มหาวิทยาลัย:</span>
-                                <span>คณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา</span>
+                                <span>คณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา (BUU)</span>
                             </li>
-                            <li class="list-group-item d-flex justify-content-between py-3">
+                            <li class="list-group-item d-flex justify-content-between align-items-center py-3">
                                 <span class="fw-bold"><i class="bi bi-envelope me-2 text-primary"></i>อีเมล:</span>
                                 <span>67310072@go.buu.ac.th</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                                <span class="fw-bold"><i class="bi bi-github me-2 text-primary"></i>GitHub:</span>
+                                <a href="https://github.com/Chai503" target="_blank" class="text-decoration-none fw-semibold">github.com/Chai503</a>
                             </li>
                         </ul>
                     </div>
@@ -122,20 +151,166 @@
         <div class="container">
             <div class="text-center mb-4">
                 <h2 class="fw-bold"><i class="bi bi-book-half text-primary"></i> รายวิชาที่เรียน (Courses)</h2>
-                <p class="text-muted">วิชาสำคัญที่ได้ศึกษาในหลักสูตร</p>
+                <p class="text-muted">รายวิชาสำคัญที่ได้ศึกษาในหลักสูตรเทคโนโลยีสารสนเทศ</p>
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-10 text-center">
-                    <span class="badge bg-primary course-badge"><i class="bi bi-shield-lock me-1"></i> Introduction to Information Security</span>
-                    <span class="badge bg-secondary course-badge"><i class="bi bi-code me-1"></i> Web Development & Technology</span>
-                    <span class="badge bg-success course-badge"><i class="bi bi-database me-1"></i> Database Systems</span>
-                    <span class="badge bg-danger course-badge"><i class="bi bi-cpu me-1"></i> Computer Programming</span>
-                    <span class="badge bg-warning text-dark course-badge"><i class="bi bi-diagram-3 me-1"></i> Data Structures & Algorithms</span>
-                    <span class="badge bg-info text-dark course-badge"><i class="bi bi-hdd-network me-1"></i> Computer Networks</span>
+                    <span class="badge bg-primary course-badge shadow-sm"><i class="bi bi-shield-lock me-1"></i> Introduction to Information Security</span>
+                    <span class="badge bg-success course-badge shadow-sm"><i class="bi bi-code-slash me-1"></i> Web Development & Technology</span>
+                    <span class="badge bg-info text-dark course-badge shadow-sm"><i class="bi bi-database me-1"></i> Database Systems & Design</span>
+                    <span class="badge bg-danger course-badge shadow-sm"><i class="bi bi-cpu me-1"></i> Computer Programming</span>
+                    <span class="badge bg-warning text-dark course-badge shadow-sm"><i class="bi bi-diagram-3 me-1"></i> Data Structures & Algorithms</span>
+                    <span class="badge bg-secondary course-badge shadow-sm"><i class="bi bi-hdd-network me-1"></i> Computer Networks & Communications</span>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold"><i class="bi bi-tools text-primary"></i> ความสามารถด้าน IT (Skills)</h2>
+                <p class="text-muted">ทักษะและความถนัดทางด้านเทคโนโลยี</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 p-4 text-center shadow-sm">
+                        <div class="skill-icon text-primary"><i class="bi bi-filetype-html"></i> <i class="bi bi-filetype-css"></i></div>
+                        <h5 class="fw-bold mb-3">Frontend Development</h5>
+                        <p class="text-muted small">พัฒนาหน้าเว็บไซต์ด้วย HTML5, CSS3, JavaScript และ Bootstrap Framework รองรับ Responsive Design</p>
+                        <div class="progress mt-auto" style="height: 10px;">
+                            <div class="progress-bar bg-primary" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 p-4 text-center shadow-sm">
+                        <div class="skill-icon text-success"><i class="bi bi-git"></i> <i class="bi bi-github"></i></div>
+                        <h5 class="fw-bold mb-3">Version Control & Git</h5>
+                        <p class="text-muted small">การใช้งาน Git, GitHub, จัดการ Repository, Branch, Staging, Commit, Push และโฮสต์ผ่าน GitHub Pages</p>
+                        <div class="progress mt-auto" style="height: 10px;">
+                            <div class="progress-bar bg-success" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 p-4 text-center shadow-sm">
+                        <div class="skill-icon text-danger"><i class="bi bi-shield-check"></i> <i class="bi bi-server"></i></div>
+                        <h5 class="fw-bold mb-3">Security & Database</h5>
+                        <p class="text-muted small">ความรู้พื้นฐานความมั่นคงปลอดภัยสารสนเทศ การจัดการฐานข้อมูล SQL และระบบปฏิบัติการคอมพิวเตอร์</p>
+                        <div class="progress mt-auto" style="height: 10px;">
+                            <div class="progress-bar bg-danger" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold"><i class="bi bi-folder-fill text-primary"></i> ผลงาน (Projects)</h2>
+                <p class="text-muted">โครงการและผลงานที่ภาคภูมิใจ</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm overflow-hidden">
+                        <div class="bg-primary text-white p-4 text-center">
+                            <i class="bi bi-globe fs-1"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">IT Portfolio Website</h5>
+                            <p class="card-text text-muted small">เว็บไซต์แนะนำตัวและผลงานส่วนตัว พัฒนาด้วย Bootstrap 5 และเผยแพร่ออนไลน์ผ่าน GitHub Pages</p>
+                            <span class="badge bg-primary-subtle text-primary border">HTML/CSS</span>
+                            <span class="badge bg-primary-subtle text-primary border">Bootstrap</span>
+                            <span class="badge bg-primary-subtle text-primary border">GitHub Pages</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm overflow-hidden">
+                        <div class="bg-success text-white p-4 text-center">
+                            <i class="bi bi-shield-lock-fill fs-1"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Security Lab & Tools</h5>
+                            <p class="card-text text-muted small">การทดลองและปฏิบัติการด้านความปลอดภัย การเข้ารหัสข้อมูล (Encryption) และการจัดการ Version Control</p>
+                            <span class="badge bg-success-subtle text-success border">Information Security</span>
+                            <span class="badge bg-success-subtle text-success border">Git</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm overflow-hidden">
+                        <div class="bg-info text-white p-4 text-center">
+                            <i class="bi bi-database-check fs-1"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Database Management App</h5>
+                            <p class="card-text text-muted small">ระบบจัดการข้อมูลและออกแบบฐานข้อมูลเชิงสัมพันธ์ รองรับการสืบค้นและรายงานผลข้อมูลสารสนเทศ</p>
+                            <span class="badge bg-info-subtle text-info border">SQL</span>
+                            <span class="badge bg-info-subtle text-info border">Relational DB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & QR Code Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold"><i class="bi bi-chat-dots-fill text-primary"></i> ช่องทางการติดต่อ & QR Code</h2>
+                <p class="text-muted">สแกน QR Code เพื่อดูโปรไฟล์ GitHub หรือติดต่อผ่านช่องทางโซเชียลมีเดีย</p>
+            </div>
+            <div class="row g-4 justify-content-center align-items-center">
+                <!-- QR Code Card -->
+                <div class="col-md-5 text-center">
+                    <div class="qr-card">
+                        <h5 class="fw-bold mb-3"><i class="bi bi-qr-code-scan text-primary me-2"></i>QR Code GitHub Profile</h5>
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=190x190&data=https://github.com/Chai503" alt="GitHub Profile QR Code" class="img-fluid border p-2 rounded mb-3 bg-white">
+                        <div>
+                            <span class="badge bg-dark"><i class="bi bi-github me-1"></i> @Chai503</span>
+                        </div>
+                        <small class="text-muted d-block mt-2">สแกนเพื่อเข้าสู่โปรไฟล์ GitHub ของฉัน</small>
+                    </div>
+                </div>
+
+                <!-- Social Media Links -->
+                <div class="col-md-5">
+                    <div class="card p-4 shadow-sm">
+                        <h5 class="fw-bold mb-3"><i class="bi bi-share text-primary me-2"></i>Social Media & Contact</h5>
+                        <div class="d-grid gap-2">
+                            <a href="https://github.com/Chai503" target="_blank" class="btn btn-dark text-start py-2">
+                                <i class="bi bi-github me-2 fs-5"></i> GitHub: Chai503
+                            </a>
+                            <a href="mailto:67310072@go.buu.ac.th" class="btn btn-danger text-start py-2">
+                                <i class="bi bi-envelope-fill me-2 fs-5"></i> Email: 67310072@go.buu.ac.th
+                            </a>
+                            <a href="https://www.facebook.com" target="_blank" class="btn btn-primary text-start py-2">
+                                <i class="bi bi-facebook me-2 fs-5"></i> Facebook Profile
+                            </a>
+                            <a href="https://www.instagram.com" target="_blank" class="btn btn-outline-danger text-start py-2">
+                                <i class="bi bi-instagram me-2 fs-5"></i> Instagram Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center">
+        <div class="container">
+            <p class="mb-1">&copy; 2026 Chaisak Phukerd (ชัยศักดิ์ ภู่เกิด) - All Rights Reserved.</p>
+            <small>IT Portfolio | Burapha University | Created with Bootstrap 5 & GitHub Pages</small>
+        </div>
+    </footer>
 
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
